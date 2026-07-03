@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Sitemap: https://avram-h.github.io/haowu/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+Sitemap: https://avram-h.github.io/haowu/sitemap.xml
+
+User-agent: Baiduspider
+Allow: /
+Sitemap: https://avram-h.github.io/haowu/sitemap.xml
