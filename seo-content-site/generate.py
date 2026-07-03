@@ -259,11 +259,13 @@ class SiteGenerator:
         """通用页面骨架"""
         ga_id = self.cfg["seo"].get("google_analytics_id", "")
         bd_id = self.cfg["seo"].get("baidu_tongji_id", "")
+        gsc_tag = self.cfg["seo"].get("google_search_console", "")
 
         analytics = ""
         if ga_id:
             analytics += f"""<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{ga_id}');</script>"""
+        gsc_meta = f'<meta name="google-site-verification" content="{gsc_tag}" />\n        ' if gsc_tag else ""
         if bd_id:
             analytics += f"""<script>var _hmt=_hmt||[];(function(){{var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?{bd_id}";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);}})();</script>"""
 
@@ -290,7 +292,7 @@ class SiteGenerator:
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 {meta_extra}
-<link rel="preconnect" href="https://fonts.googleapis.com">
+{gsc_meta}<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
 {analytics}
@@ -673,6 +675,12 @@ Sitemap: {self.site['domain']}/sitemap.xml
         self._write(OUTPUT_DIR / "about.html", about)
         self._write(OUTPUT_DIR / "privacy.html", privacy)
         print(f"  📄 about.html, privacy.html")
+
+        # Google Search Console 验证文件
+        gsc = self.cfg["seo"].get("google_search_console", "")
+        if gsc and gsc.endswith(".html"):
+            self._write(OUTPUT_DIR / gsc, f"google-site-verification: {gsc}")
+            print(f"  🔍 GSC 验证文件: {gsc}")
 
     # ── 写入辅助 ──
     def _write(self, path, content):
