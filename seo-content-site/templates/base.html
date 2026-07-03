@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | {{ site_name }}</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="{{ keywords }}">
+    <meta name="author" content="{{ author }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta property="og:title" content="{{ title }} | {{ site_name }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:type" content="{{ og_type }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:site_name" content="{{ site_name }}">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --radius: 8px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            color: var(--text);
+            background: var(--bg-secondary);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        header .tagline {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        nav a {
+            margin-left: 24px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        nav a:hover { color: var(--primary); }
+        .main-layout {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .content-area {
+            flex: 1;
+            min-width: 0;
+        }
+        .sidebar {
+            width: 300px;
+            flex-shrink: 0;
+        }
+        .card {
+            background: var(--bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+            transition: all 0.2s;
+        }
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+        .card h2 a {
+            color: var(--text);
+            text-decoration: none;
+        }
+        .card h2 a:hover { color: var(--primary); }
+        .card .meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .card .excerpt {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .ad-slot {
+            background: var(--bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border: 1px dashed var(--border);
+        }
+        article.content {
+            background: var(--bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 32px;
+        }
+        article.content h1 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        article.content .meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        article.content h2 {
+            font-size: 1.5rem;
+            margin: 28px 0 12px;
+            color: var(--primary);
+        }
+        article.content h3 {
+            font-size: 1.2rem;
+            margin: 20px 0 8px;
+        }
+        article.content p { margin-bottom: 14px; }
+        article.content ul, article.content ol {
+            margin-bottom: 14px;
+            padding-left: 24px;
+        }
+        article.content li { margin-bottom: 6px; }
+        article.content .affiliate-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #f97316, #ef4444);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 16px 0;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+        article.content .affiliate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 32px 0;
+        }
+        .pagination a, .pagination span {
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        .pagination a:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        .pagination .current { background: var(--primary); color: white; border-color: var(--primary); }
+        footer {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            margin-top: 48px;
+            padding: 32px 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        @media (max-width: 768px) {
+            .main-layout { flex-direction: column; }
+            .sidebar { width: 100%; }
+            nav { display: none; }
+            .article-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    {{ extra_head }}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">{{ site_name }}</a>
+            <span class="tagline">{{ tagline }}</span>
+            <nav>
+                <a href="/">首页</a>
+                <a href="/category/digital">数码</a>
+                <a href="/category/home">家居</a>
+                <a href="/category/beauty">美妆</a>
+                <a href="/category/lifestyle">生活</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-layout">
+            <main class="content-area">
+                {% block content %}{% endblock %}
+            </main>
+            <aside class="sidebar">
+                <!-- 侧边栏广告 -->
+                <div class="ad-slot">
+                    🛒 广告位 - 侧边栏
+                </div>
+                <div class="card">
+                    <h3>🔥 热门推荐</h3>
+                    <ul style="list-style:none;padding:0;">
+                        {% for hot in hot_articles %}
+                        <li style="margin-bottom:8px;">
+                            <a href="{{ hot.url }}" style="color:var(--text);text-decoration:none;font-size:0.9rem;">
+                                {{ hot.title }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🏷️ 标签</h3>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                        {% for tag in all_tags %}
+                        <a href="/tag/{{ tag }}" style="background:var(--bg-secondary);padding:4px 10px;border-radius:15px;font-size:0.8rem;text-decoration:none;color:var(--text);">
+                            {{ tag }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer>
+        <p>© {{ year }} {{ site_name }} | 本站内容仅供参考，购物请谨慎选择</p>
+        <p style="margin-top:8px;">
+            <a href="/about" style="color:var(--text-secondary);">关于我们</a> &nbsp;|&nbsp;
+            <a href="/privacy" style="color:var(--text-secondary);">隐私政策</a> &nbsp;|&nbsp;
+            <a href="/sitemap.xml" style="color:var(--text-secondary);">网站地图</a>
+        </p>
+    </footer>
+    {{ extra_scripts }}
+</body>
+</html>

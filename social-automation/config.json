@@ -1,0 +1,66 @@
+{
+  "platforms": {
+    "twitter": {
+      "enabled": false,
+      "api_key": "",
+      "api_secret": "",
+      "access_token": "",
+      "access_secret": "",
+      "bearer_token": ""
+    },
+    "weibo": {
+      "enabled": false,
+      "app_key": "",
+      "app_secret": "",
+      "redirect_uri": "",
+      "access_token": ""
+    },
+    "xiaohongshu": {
+      "enabled": false,
+      "note": "小红书目前无公开API，建议手动发布"
+    },
+    "wechat_mp": {
+      "enabled": false,
+      "appid": "",
+      "appsecret": ""
+    }
+  },
+  "schedule": {
+    "posts_per_day": 3,
+    "best_times": [
+      "08:00",
+      "12:30",
+      "20:00"
+    ],
+    "timezone": "Asia/Shanghai"
+  },
+  "content_types": [
+    "好物推荐",
+    "干货分享",
+    "互动话题",
+    "热点资讯",
+    "促销信息"
+  ],
+  "hashtags": {
+    "default": [
+      "好物推荐",
+      "好物分享",
+      "生活好物"
+    ],
+    "digital": [
+      "数码测评",
+      "数码好物",
+      "科技生活"
+    ],
+    "home": [
+      "家居好物",
+      "居家必备",
+      "品质生活"
+    ],
+    "beauty": [
+      "护肤推荐",
+      "男士护肤",
+      "护肤好物"
+    ]
+  }
+}

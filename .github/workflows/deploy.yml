@@ -1,0 +1,37 @@
+name: 🚀 Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:      # 允许手动触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 🔨 生成站点
+        run: |
+          cd seo-content-site
+          python generate.py
+
+      - name: 📊 构建统计
+        run: |
+          echo "📄 HTML 页面: $(find seo-content-site/output -name '*.html' | wc -l)"
+          echo "🗺️  Sitemap: $(test -f seo-content-site/output/sitemap.xml && echo '✓' || echo '✗')"
+          echo "🤖 Robots:  $(test -f seo-content-site/output/robots.txt && echo '✓' || echo '✗')"
+          echo "📡 RSS:     $(test -f seo-content-site/output/feed.xml && echo '✓' || echo '✗')"
+
+      - name: 🚀 部署到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./seo-content-site/output
+          force_orphan: true

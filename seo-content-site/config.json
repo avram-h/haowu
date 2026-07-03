@@ -1,0 +1,36 @@
+{
+  "site": {
+    "name": "好物优选",
+    "tagline": "发现好物，分享生活",
+    "domain": "https://your-domain.com",
+    "language": "zh-CN",
+    "author": "好物君"
+  },
+  "ads": {
+    "enabled": true,
+    "sidebar_top": "",
+    "sidebar_bottom": "",
+    "in_content": "",
+    "in_list": "",
+    "auto_ads": "<script>/* Google Auto Ads */</script>"
+  },
+  "affiliate": {
+    "jd": {
+      "enabled": true,
+      "pid": "your-jd-pid"
+    },
+    "amazon": {
+      "enabled": false,
+      "tag": "your-tag-20"
+    }
+  },
+  "content": {
+    "source_dir": "content",
+    "output_dir": "output",
+    "articles_per_page": 12
+  },
+  "seo": {
+    "google_analytics_id": "",
+    "baidu_tongji_id": ""
+  }
+}
